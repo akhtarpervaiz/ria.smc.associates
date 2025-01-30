@@ -52,6 +52,7 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.Users
                         int MOBILENO = reader.GetOrdinal("MOBILENUMBER");
                         while (reader.Read())
                         {
+                            // hello world
                             loginResponse.UserId = reader.GetString(USERID);
                             loginResponse.UserName = reader.GetString(USERNAME);
                             loginResponse.Email = reader.GetString(EMAIL);
