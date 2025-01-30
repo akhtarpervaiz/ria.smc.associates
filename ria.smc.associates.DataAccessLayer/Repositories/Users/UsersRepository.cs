@@ -53,6 +53,7 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.Users
                         while (reader.Read())
                         {
                             // hello world
+                            // hello 
                             loginResponse.UserId = reader.GetString(USERID);
                             loginResponse.UserName = reader.GetString(USERNAME);
                             loginResponse.Email = reader.GetString(EMAIL);
