@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Accounts\Model\" />
+    <Folder Include="Areas\Accounts\Controllers\" />
+    <Folder Include="Areas\Accounts\View\" />
+    <Folder Include="Areas\HR\Models\" />
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.30" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ria.smc.associates.DL\ria.smc.associates.DL.csproj" />
+    <ProjectReference Include="..\ria.smc.associates.Models\ria.smc.associates.Models.csproj" />
+    <ProjectReference Include="..\ria.smc.associatesDto\ria.smc.associatesDto.csproj" />
+  </ItemGroup>
+
+</Project>

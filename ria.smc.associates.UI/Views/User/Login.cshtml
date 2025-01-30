@@ -1,0 +1,138 @@
+﻿@using ria.smc.associates.UI.Utilities
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@AppConstants.HEAD_TITLE</title>
+    <link rel="stylesheet" href="~/vendors/core/core.css">
+    <link rel="stylesheet" href="~/fonts/feather-font/css/iconfont.css">
+    <link rel="stylesheet" href="~/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="page-wrapper full-page">
+            <div class="page-content d-flex align-items-center justify-content-center">
+
+                <div class="row w-100 mx-0 auth-page">
+                    <div class="col-md-8 col-xl-6 mx-auto">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-4 pr-md-0">
+                                    <div class="auth-left-wrapper">
+                                    </div>
+                                </div>
+                                <div class="col-md-8 pl-md-0">
+                                    <div class="auth-form-wrapper px-4 py-5">
+                                        <h1 class="ria-ui-logo d-block mb-2">RIA <span class="pl-1"> Associates</span></h1>
+                                        <h5 class="text-muted font-weight-normal mb-4">Welcome back! Log in to your account.</h5>
+
+                                        <div class="alert alert-danger alert-dismissible fade show d-none" id="errorAlertMessge" role="alert">
+                                            <strong>Error!</strong>
+                                            <p></p>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form asp-controller="User" asp-action="Login" class="forms-sample cmxform" id="signInForm" method="post" role="form" enctype="multipart/form-data">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <label for="cnic">CNIC</label>
+                                                    <input name="UserName" id="cnic" class="form-control" maxlength="15" type="text" placeholder="CNIC" data-inputmask-alias="99999-9999999-9">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password</label>
+                                                    <input name="Password" id="password" class="form-control" type="password" placeholder="Password">
+                                                </div>
+                                                <div class="form-check form-check-flat form-check-primary">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input">
+                                                        Remember me
+                                                    </label>
+                                                </div>
+                                                <br />
+                                                <div class="mt-3">
+                                                    <input class="btn btn-primary mr-2 mb-2 mb-md-0 text-white" type="submit" value="Login">
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/vendors/core/core.js"></script>
+
+    <script src="~/vendors/feather-icons/feather.min.js"></script>
+    <script src="~/js/template.js"></script>
+    <script src="~/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="~/vendors/inputmask/jquery.inputmask.min.js"></script>
+    <script src="~/js/inputmask.js"></script>
+    <script>
+        $(function () 
+        {
+
+            if ("@ViewData["ErrorAlertMessge"]" != null && "@ViewData["ErrorAlertMessge"]" != "") {
+                $("#errorAlertMessge").removeClass("d-none");
+                $("#errorAlertMessge p").html("@ViewData["ErrorAlertMessge"]");
+            }
+            'use strict';
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    $("#signInForm").submit();
+                }
+            });
+
+            $(function () {
+                
+                $("#signInForm").validate({
+                    rules: {
+                        cnic: {
+                            required: true,
+                            minlength: 15,
+                            maxlength: 15,
+                        },
+                        password: {
+                            required: true,
+                            minlength: 6
+                        }
+                    },
+                    messages: {
+                        cnic: {
+                            required: "Please enter a CNIC",
+                            minlength: "Please enter a valid CNIC",
+                            maxlength: "Please enter a valid CNIC"
+                        },
+                        password: {
+                            required: "Please enter a password",
+                            minlength: "Your password must be at least 6 characters long"
+                        }
+                    },
+                    errorPlacement: function (label, element) {
+                        label.addClass('mt-2 text-danger');
+                        label.insertAfter(element);
+                    },
+                    highlight: function (element, errorClass) {
+                        $(element).parent().addClass('has-danger')
+                        $(element).addClass('form-control-danger')
+                    },
+                    success: function (element, succesClass) {
+                        $(element).parent().removeClass('has-danger')
+                    }
+                });
+            });
+        }
+        );
+    </script>
+</body>
+</html>

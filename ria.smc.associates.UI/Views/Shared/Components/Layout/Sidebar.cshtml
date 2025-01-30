@@ -1,0 +1,94 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+<style>
+    .nav .sub-menu {
+        margin-left: 10px !important;
+        padding-left: 10px !important;
+    }
+
+        .nav .sub-menu .nav-item .link-title {
+            font-size: 14px;
+            color: #666;
+        }
+</style>
+@model IEnumerable<ria.smc.associates.UI.Models.DashboardMenuItems>
+
+<nav class="sidebar">
+    <div class="sidebar-header">
+        <a href="#" class="sidebar-brand">
+            RIA <span class="pl-1"> Associates</span>
+        </a>
+        <div class="sidebar-toggler not-active">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="sidebar-body">
+        <ul class="nav">
+            <li class="nav-item nav-category">Main</li>
+            <li class="nav-item">
+                <a href="dashboard-one.html" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item nav-category">Pages</li>
+            
+            @foreach (var parent in Model.Where(m => m.ParentId == string.Empty))
+            {
+                <li class="nav-item" data-parent-id="@parent.MenuItemId">
+                    <a href="javascript:void(0);" class="nav-link parent-menu-item">
+                        <i class="link-icon" data-feather="@parent.Icon"></i>
+                        <span class="link-title">@parent.Title</span>
+                    </a>
+
+                    @if (Model.Any(m => m.ParentId == parent.MenuItemId))
+                    {
+                        <ul class="nav sub-menu" style="display: none;">
+                            @foreach (var child in Model.Where(m => m.ParentId == parent.MenuItemId))
+                            {
+                                
+                                   @* var urlParts = child.Url.Split('/');
+                                    var area = urlParts.Length > 0 ? urlParts[0] : "";
+                                    var controller = urlParts.Length > 1 ? urlParts[1] : "";
+                                    var action = urlParts.Length > 2 ? urlParts[2] : "";*@
+                                
+                                
+                                <li class="nav-item">
+                                    <a @*asp-action="@action" asp-controller="@controller" asp-area="@area"*@ href="/@child.Url" onclick="toggleParentMenu(@parent.MenuItemId)">
+                                        <i class="link-icon" data-feather="@child.Icon" style="width: 16px; height: 16px;"></i>
+                                        <span style="margin-left:3px;">@child.Title</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+@*<a href="~/lib/jquery/jquery.min.map">~/lib/jquery/jquery.min.map</a>*@
+<script>
+    $(document).ready(function() 
+    {
+        $(".parent-menu-item").on("click", function() {
+            var subMenu = $(this).next(".sub-menu");
+            subMenu.toggle();
+        });
+    });
+
+    function toggleParentMenu(parentId) {
+    var parentMenu = document.querySelector(`[data-parent-id="${parentId}"]`);
+
+    if (parentMenu) {
+        parentMenu.classList.add('active');  // Add active class to keep the parent open
+        parentMenu.querySelector('.sub-menu').style.display = 'block';  // Ensure child menu is visible
+    }
+}
+</script>
+

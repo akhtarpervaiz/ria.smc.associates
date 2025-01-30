@@ -1,0 +1,66 @@
+﻿@using ria.smc.associates.UI.Utilities
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@AppConstants.HEAD_TITLE</title>
+	<!-- core:css -->
+	<link rel="stylesheet" href="~/vendors/core/core.css">
+	<!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="~/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+	<!-- end plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="~/fonts/feather-font/css/iconfont.css">
+	<link rel="stylesheet" href="~/vendors/flag-icon-css/css/flag-icon.min.css">
+	<!-- endinject -->
+  <!-- Layout styles -->  
+	<link rel="stylesheet" href="~/css/style.css">
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="~/images/favicon.png" />
+</head>
+<body>
+	<div class="main-wrapper">
+
+		<!-- Sidebar View Component -->
+		@await Component.InvokeAsync("Sidebar") 
+
+		<!-- Setting View Component -->
+		@await Component.InvokeAsync("Setting") 
+	
+		<div class="page-wrapper">					
+			<!-- Header View Component -->
+			@await Component.InvokeAsync("Header") 
+
+			<!-- Render Body -->
+            @RenderBody()
+
+			<!-- Footer View Component -->
+			@await Component.InvokeAsync("Footer") 
+		</div>
+	</div>
+
+	<!-- core:js -->
+	<script src="~/vendors/core/core.js"></script>
+	<!-- endinject -->
+  <!-- plugin js for this page -->
+  <script src="~/vendors/chartjs/Chart.min.js"></script>
+  <script src="~/vendors/jquery.flot/jquery.flot.js"></script>
+  <script src="~/vendors/jquery.flot/jquery.flot.resize.js"></script>
+  <script src="~/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="~/vendors/apexcharts/apexcharts.min.js"></script>
+  <script src="~/vendors/progressbar.js/progressbar.min.js"></script>
+	<!-- end plugin js for this page -->
+	<!-- inject:js -->
+	<script src="~/vendors/feather-icons/feather.min.js"></script>
+	<script src="~/js/template.js"></script>
+	<!-- endinject -->
+  <!-- custom js for this page -->
+  <script src="~/js/dashboard.js"></script>
+  <script src="~/js/datepicker.js"></script>
+	<!-- end custom js for this page -->
+</body>
+</html>    
