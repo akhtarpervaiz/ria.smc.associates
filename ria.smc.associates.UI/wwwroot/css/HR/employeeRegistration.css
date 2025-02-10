@@ -1,0 +1,44 @@
+
+.form-control {
+    width: 100% !important;
+}
+
+.form-control-danger {
+    border-color: #ff3366 !important;
+}
+
+.wizard > .content > .body label.error{
+    margin:0px !important;
+    font-size:12px;
+}
+
+.wizard > .steps > ul > li {
+    width: 20%;
+}
+
+.wizard > .steps > ul .last a
+{
+    margin-right:0px;
+}
+
+.wizard > .content {
+    margin: 10px 0px;
+    min-height: auto;
+}
+
+    .wizard > .content > .body {
+        float: none;
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+.datepicker.input-group .input-group-addon {
+    position: absolute;
+    right: 0px;
+    top: 6px;
+}
+
+.dropify-wrapper .dropify-message span.file-icon {
+    font-size:20px;
+}

@@ -16408,7 +16408,7 @@ select {
   width: 100%;
   height: 100%;
   background-image: url(../images/login/bg_left_side.webp);
-  background-size: cover; }
+}
 
 @media (min-width: 992px) {
   .inbox-wrapper .email-aside .aside-content {
@@ -17503,3 +17503,7 @@ div.tagsinput {
   float: right; }
 
 /*# sourceMappingURL=../maps/demo_1/style.css.map */
+
+.d-contents{
+    display: contents;
+}
