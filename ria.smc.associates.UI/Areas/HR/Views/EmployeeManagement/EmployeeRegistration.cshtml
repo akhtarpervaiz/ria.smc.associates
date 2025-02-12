@@ -1,8 +1,292 @@
-﻿@{
+﻿@model ria.smc.associates.Models.EmployeeManagement.EmployeeInformation
+
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Employee Registration";
 }
 
-<p>Employee Registration</p>
+<link href="@Url.Content("~/vendors/jquery-steps/jquery.steps.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/vendors/dropify/dist/dropify.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/css/HR/employeeRegistration.css")" rel="stylesheet" type="text/css" />
 
-<h1>Test</h1>
+<div class="page-content">
+    <nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Employee</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Registration</li>
+        </ol>
+    </nav>
+
+    <div class="alert alert-danger alert-dismissible fade show d-none" id="errorAlertMessge" role="alert">
+        <strong>Error!</strong>
+        <p></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Employee Registration</h4>
+                    <form id="employeeRegistrationForm" asp-area="HR" asp-controller="EmployeeManagement" asp-action="EmployeeRegistration" method="post" role="form" enctype="multipart/form-data">
+                        <h2>Personal Information</h2>
+                        <section data-step="0">
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="EMPLOYEENAME">Employee Name</label>
+                                    <input name="EMPLOYEENAME" id="EMPLOYEENAME" class="form-control" maxlength="50" type="text" placeholder="Employee Name" required>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="FATHERNAME">Father Name</label>
+                                    <input name="FATHERNAME" id="FATHERNAME" class="form-control" maxlength="50" type="text" placeholder="Father Name" required>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="CNIC">CNIC</label>
+                                    <input name="CNIC" id="CNIC" class="form-control" maxlength="15" type="text" placeholder="CNIC" data-inputmask-alias="99999-9999999-9" required>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="DATEOFBIRTH">Date of Birth</label>
+                                    <div class="input-group date datepicker" id="datePicker_DATEOFBIRTH">
+                                        <input name="DATEOFBIRTH" id="DATEOFBIRTH" class="form-control" type="text" placeholder="Date of Birth" required>
+                                        <span class="input-group-addon"><i data-feather="calendar"></i></span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="GENDER">Gender</label>
+                                    <select class="form-control" id="GENDER" name="GENDER" required>
+                                        <option selected disabled>Select Gender</option>
+                                        <option value="B785A22F117F4992B7E23834D74A1306">Male</option>
+                                        <option value="A8BAF32F07F549BFA466D5A7C33725C8">Female</option>
+                                        <option value="D3960C10017C4C9AADED694BBF6922D9">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="MARITALSTATUS">Marital Status</label>
+                                    <select class="form-control" id="MARITALSTATUS" name="MARITALSTATUS" required>
+                                        <option selected disabled>Select Marital Status</option>
+                                        <option value="082E05913E664B149779474CA730615C" disabled>Divorced</option>
+                                        <option value="5B4D334508BE4569BE2B0F7CD62134A1" disabled>Widowed</option>
+                                        <option value="E6DB981D7A8C4951AB678E57EF9D82D6">Single</option>
+                                        <option value="E71153733AF84C8E885E5801D665A448">Married</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="BLOODGROUP">Blood Group</label>
+                                    <select class="form-control" id="BLOODGROUP" name="BLOODGROUP" required>
+                                        <option selected disabled>Select Blood Group</option>
+                                        <option value="0B52A90F473D4681B5D585B0145E0F23">A+</option>
+                                        <option value="5B095B6F2DBB4DC0AC9E39BA1640600D">AB-</option>
+                                        <option value="61872550DCB842CCB707A17707A2A0C4">O+</option>
+                                        <option value="970A656D876645C697E8732DA43F53C2">A-</option>
+                                        <option value="9E53047DBE974C0590555DB1EC54584A">B+</option>
+                                        <option value="A333B5B79931433B9FCB12D46C36D7E8">O-</option>
+                                        <option value="A55CD93DBC19468CB30BDC4F50CAEE58">AB+</option>
+                                        <option value="D23D61688B9541A2832B71CB82941413">B-</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="NATIONALITY">Nationality</label>
+                                    <select class="form-control" id="NATIONALITY" name="NATIONALITY" required>
+                                        <option selected disabled>Select Nationality</option>
+                                        <option value="Pakistani">Pakistani</option>
+                                        <option value="Indian">Indian</option>
+                                        <option value="UAE">UAE</option>
+                                        <option value="America">America</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="UK">UK</option>
+                                        <option value="Saudia">Saudia</option>
+                                        <option value="Afganistan">Afganistan</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="NATIONALITY">Profile Picture</label>
+                                    <input type="file" name="PROFILEPICTURE" class="border" id="PROFILEPICTURE" accept="image/*" />
+                                </div>
+                            </fieldset>
+                        </section>
+
+                        <h2>Contact information</h2>
+                        <section data-step="1">
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="MOBILENO">Mobile Number</label>
+                                    <input name="MOBILENO" id="MOBILENO" class="form-control" maxlength="12" type="text" placeholder="Mobile Number" data-inputmask-alias="0399-9999999" required>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="EMAIL">Email</label>
+                                    <input name="EMAIL" id="EMAIL" class="form-control" maxlength="50" type="email" placeholder="Email">
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-group col-md-12 col-sm-12 p-0">
+                                    <label for="PERMANENETADDRESS">Permanenet Address</label>
+                                    <input name="PERMANENETADDRESS" id="PERMANENETADDRESS" class="form-control" maxlength="3000" type="text" placeholder="Permanenet Address" required>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-group col-md-12 col-sm-12 p-0">
+                                    <label for="CURRENTADDRESS">Current Address</label>
+                                    <input name="CURRENTADDRESS" id="CURRENTADDRESS" class="form-control" maxlength="3000" type="text" placeholder="Current Address" required>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="EMERGENCYCONTACTNAME">Emergency Contact Name</label>
+                                    <input name="EMERGENCYCONTACTNAME" id="EMERGENCYCONTACTNAME" class="form-control" maxlength="50" type="text" placeholder="Emergency Contact Name" required>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="EMERGENCYCONTACTRELATION">Emergency Contact Relation</label>
+                                    <select class="form-control" id="EMERGENCYCONTACTRELATION" name="EMERGENCYCONTACTRELATION" required>
+                                        <option selected disabled>Select Emergency Contact Relation</option>
+                                        <option value="Father">Father</option>
+                                        <option value="Mother">Mother</option>
+                                        <option value="Brother">Brother</option>
+                                        <option value="Sister">Sister</option>
+                                        <option value="Son">Son</option>
+                                        <option value="Daughter">Daughter</option>
+                                        <option value="Husband">Husband</option>
+                                        <option value="Wife">Wife</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="EMERGENCYCONTACTNUMBER">Emergency Contact Number</label>
+                                    <input name="EMERGENCYCONTACTNUMBER" id="EMERGENCYCONTACTNUMBER" class="form-control" maxlength="12" type="text" placeholder="Emergency Contact Number" data-inputmask-alias="0399-9999999" required>
+                                </div>
+                            </fieldset>
+                        </section>
+
+                        <h2>Emplopyee Details</h2>
+                        <section data-step="2">
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="DATEOFJOINING">Date of Joining</label>
+                                    <div class="input-group date datepicker" id="datePicker_DATEOFJOINING">
+                                        <input name="DATEOFJOINING" id="DATEOFJOINING" class="form-control" type="text" placeholder="Date of Joining" required>
+                                        <span class="input-group-addon"><i data-feather="calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="EMPLOYEETYPE">Employee Type</label>
+                                    <select class="form-control" id="EMPLOYEETYPE" name="EMPLOYEETYPE" required>
+                                        <option selected disabled>Select Employee Type</option>
+                                        <option value="28C4572229BE4878AA53B401F9481611">Full Time</option>
+                                        <option value="F5FB3D6322BD46499395B5F20C19BA8C">Part Time</option>
+                                        <option value="F6FD9E3C8E8841EFB8B721CD92F249C5">Contract</option>
+                                        <option value="7C50B814246B4BF9A207B29E26EA9259">Intern</option>
+                                        <option value="EEB25C67552F4A6EA9F6BB9960939C95">Staff</option>
+                                        <option value="0E9CF266ED694A92A61C3F6FD154E69C">Labour</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="DESIGNATION">Designation</label>
+                                    <input name="DESIGNATION" id="DESIGNATION" class="form-control" maxlength="50" type="text" placeholder="Designation" required>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="DEPARTMENT">Department</label>
+                                    <input name="DEPARTMENT" id="DEPARTMENT" class="form-control" maxlength="50" type="text" placeholder="Department" required>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="EMPLOYEESTATUS">Employee Status</label>
+                                    <select class="form-control" id="EMPLOYEESTATUS" name="EMPLOYEESTATUS" required>
+                                        <option selected disabled>Select Employee Status</option>
+                                        <option value="4A00F8EFD6584EC9934093932EB0A02F">Active</option>
+                                        <option value="98B272B8F2B944FB93FAD72177F91D87">Probation</option>
+                                        <option value="C093787340214F688CF5853564CDB945">Terminated</option>
+                                        <option value="40774533497841C3838FE1BC463E5840">Resigned</option>
+                                        <option value="4163ADD4F97E49E295EEAA203CD49BB2" disabled>Retired</option>
+                                        <option value="D309B7D664CF4EB5A7EBC04AA5AB8B71" disabled>On Leave</option>
+                                        <option value="E967DB5E04334894B68E4FC38CC62D9B" disabled>Suspended</option>
+                                        <option value="AC666AB9E8AD4104806667BC4CFDF534" disabled>Deceased</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </section>
+
+                        <h2>Qualifications and Skills</h2>
+                        <section data-step="3">
+                            <fieldset class="row">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="HIGHESTQUALIFICATION">Highest Qualification</label>
+                                    <input name="HIGHESTQUALIFICATION" id="HIGHESTQUALIFICATION" class="form-control" maxlength="50" type="text" placeholder="Highest Qualification" required>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="SPECILIZATION">Specilization</label>
+                                    <input name="SPECILIZATION" id="SPECILIZATION" class="form-control" maxlength="50" type="text" placeholder="Specilization">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="CERTIFICATION">Certification</label>
+                                    <input name="CERTIFICATION" id="CERTIFICATION" class="form-control" maxlength="50" type="text" placeholder="Certification">
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="EXPERIENCE">Experience</label>
+                                    <input name="EXPERIENCE" id="EXPERIENCE" class="form-control" maxlength="50" type="text" placeholder="Experience">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="BASICSALARY">Basic Salary</label>
+                                    <input name="BASICSALARY" id="BASICSALARY" class="form-control" maxlength="50" type="number" placeholder="Basic Salary">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="GROSSSALARY">Gross Salary</label>
+                                    <input name="GROSSSALARY" id="GROSSSALARY" class="form-control" maxlength="50" type="number" placeholder="Gross Salary">
+                                </div>
+                            </fieldset>
+                        </section>
+
+                        <h2>Bank Details</h2>
+                        <section data-step="4">
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="BANKNAME">Bank Name</label>
+                                    <input name="BANKNAME" id="BANKNAME" class="form-control" maxlength="50" type="text" placeholder="Bank Name" required>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="BRANCH">Branch</label>
+                                    <input name="BRANCH" id="BRANCH" class="form-control" maxlength="50" type="text" placeholder="Branch" required>
+                                </div>
+                            </fieldset>
+                            <fieldset class="row">
+                                <div class="form-group col-md-6 col-sm-12">
+                                    <label for="ACCOUNTNUMBER">Account Number</label>
+                                    <input name="ACCOUNTNUMBER" id="ACCOUNTNUMBER" class="form-control" maxlength="200" type="text" placeholder="Account Number" required>
+                                </div>
+                            </fieldset>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/vendors/inputmask/jquery.inputmask.min.js")"></script>
+<script src="@Url.Content("~/vendors/jquery-steps/jquery.steps.min.js")"></script>
+<script src="@Url.Content("~/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js")"></script>
+<script src="@Url.Content("~/vendors/moment/moment.min.js")"></script>
+<script src="@Url.Content("~/vendors/jquery-validation/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/vendors/dropify/dist/dropify.min.js")"></script>
+<script src="@Url.Content("~/js/HR/employeeRegistration.js")"></script>
+
+<script>
+    $(function () 
+    {
+        'use strict';
+        if ("@ViewData["ErrorAlertMessge"]" != null && "@ViewData["ErrorAlertMessge"]" != "") {
+            $("#errorAlertMessge").removeClass("d-none");
+            $("#errorAlertMessge p").html("@ViewData["ErrorAlertMessge"]");
+        }
+    })
+</script>

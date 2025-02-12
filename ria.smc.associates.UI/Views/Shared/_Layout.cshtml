@@ -21,6 +21,9 @@
 	<link rel="stylesheet" href="~/css/style.css">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="~/images/favicon.png" />
+  	<!-- core:js -->
+	<script src="~/vendors/core/core.js"></script>
+	<!-- endinject -->
 </head>
 <body>
 	<div class="main-wrapper">
@@ -42,10 +45,6 @@
 			@await Component.InvokeAsync("Footer") 
 		</div>
 	</div>
-
-	<!-- core:js -->
-	<script src="~/vendors/core/core.js"></script>
-	<!-- endinject -->
   <!-- plugin js for this page -->
   <script src="~/vendors/chartjs/Chart.min.js"></script>
   <script src="~/vendors/jquery.flot/jquery.flot.js"></script>

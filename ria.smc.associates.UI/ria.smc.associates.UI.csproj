@@ -12,7 +12,6 @@
     <Folder Include="Areas\Accounts\View\" />
     <Folder Include="Areas\HR\Models\" />
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
