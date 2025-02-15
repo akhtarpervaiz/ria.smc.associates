@@ -36,13 +36,13 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.MasterData
                     if (reader?.HasRows == true)
                     {
                         int BLOODGROUPID = reader.GetOrdinal("BLOODGROUPID");
-                        int BLOODGROUPNAME = reader.GetOrdinal("BLOODGROUPNAME");
+                        int BLOODGROUP = reader.GetOrdinal("BLOODGROUP");
                         
                         while (reader.Read())
                         {
                             BloodGroups bloodGroup = new BloodGroups();
                             bloodGroup.BloodGroupId = reader.GetString(BLOODGROUPID);
-                            bloodGroup.BloodGroup = reader.GetString(BLOODGROUPNAME);
+                            bloodGroup.BloodGroup = reader.GetString(BLOODGROUP);
                             bloodGroups.Add(bloodGroup);
                         }
                     }
@@ -59,8 +59,6 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.MasterData
             return bloodGroups;
         }
 
-       
-
         public async Task<List<Genders>> GetGenders()
         {
             List<Genders> genders = new List<Genders>();
@@ -75,13 +73,13 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.MasterData
                     if (reader?.HasRows == true)
                     {
                         int GENDERID = reader.GetOrdinal("GENDERID");
-                        int GENDERNAME = reader.GetOrdinal("GENDERNAME");
+                        int GENDER = reader.GetOrdinal("GENDER");
 
                         while (reader.Read())
                         {
                             Genders gender = new Genders();
                             gender.GenderId = reader.GetString(GENDERID);
-                            gender.Gender = reader.GetString(GENDERNAME);
+                            gender.Gender = reader.GetString(GENDER);
                             genders.Add(gender);
                         }
                     }
@@ -112,13 +110,13 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.MasterData
                     if (reader?.HasRows == true)
                     {
                         int MARITALSTATUSID = reader.GetOrdinal("MARITALSTATUSID");
-                        int MARITALSTATUSNAME = reader.GetOrdinal("MARITALSTATUSNAME");
+                        int MARITALSTATUS = reader.GetOrdinal("MARITALSTATUS");
 
                         while (reader.Read())
                         {
                             MaritalStatuses maritalStatus = new MaritalStatuses();
                             maritalStatus.MaritalStatusId = reader.GetString(MARITALSTATUSID);
-                            maritalStatus.MaritalStatus = reader.GetString(MARITALSTATUSNAME);
+                            maritalStatus.MaritalStatus = reader.GetString(MARITALSTATUS);
                             maritalStatuses.Add(maritalStatus);
                         }
                     }

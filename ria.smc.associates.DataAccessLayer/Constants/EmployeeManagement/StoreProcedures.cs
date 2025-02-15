@@ -118,5 +118,9 @@ namespace ria.smc.associates.DataAccessLayer.Constants.EmployeeManagement
                 public const string EMPLOYEEID = "@EMPLOYEEID";
             }
         }
+        public static class MAXEMPLOYEECODE_GET
+        {
+            public const string Name = "MAXEMPLOYEECODE_GET";
+        }
     }
 }

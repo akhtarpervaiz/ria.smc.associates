@@ -5,6 +5,7 @@ using ria.smc.associates.DataAccessLayer.Common;
 using ria.smc.associates.DataAccessLayer.Constants.EmployeeManagement;
 using ria.smc.associates.DataAccessLayer.Interfaces.EmployeeManagement;
 using ria.smc.associates.Models.EmployeeManagement;
+using ria.smc.associates.Models.MasterData;
 using ria.smc.associatesDto.EmployeeManagement;
 using System;
 using System.Collections.Generic;
@@ -502,6 +503,37 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.EmployeeManagement
             return string.Empty;
         }
 
+        public string GetMaxEmployeeCode()
+        {
+            string maxEmployeeCode = string.Empty;
+            SqlCommand command = null;
+            try
+            {
+                command = _genericRepository.GetCommand(StoreProcedures.MAXEMPLOYEECODE_GET.Name, CommandType.StoredProcedure);
+                _genericRepository.OpenConnection();
 
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader?.HasRows == true)
+                    {
+                        int EMPLOYEECODE = reader.GetOrdinal("EMPLOYEECODE");
+
+                        while (reader.Read())
+                        {
+                            maxEmployeeCode = reader.GetString(EMPLOYEECODE);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _genericRepository.CloseConnection();
+            }
+            return maxEmployeeCode;
+        }
     }
 }

@@ -3,6 +3,7 @@ using ria.smc.associates.Common.Constants;
 using ria.smc.associates.DataAccessLayer.Interfaces.EmployeeManagement;
 using ria.smc.associates.DataAccessLayer.Repositories.EmployeeManagement;
 using ria.smc.associates.Models.EmployeeManagement;
+using ria.smc.associates.Models.MasterData;
 using ria.smc.associates.UI.Utilities;
 using ria.smc.associatesDto.EmployeeManagement;
 
@@ -92,6 +93,28 @@ namespace ria.smc.associates.WebAPI.Controllers
                 return StatusCode(500, "An unexpected error occurred. Please try again later.");
             }
 
+        }
+
+        [HttpGet("GetMaxEmployeeCode")]
+        public async Task<IActionResult> GetMaxEmployeeCode()
+        {
+            string empployeeCode = string.Empty;
+            try
+            {
+                empployeeCode = _employeeManagementRepository.GetMaxEmployeeCode();
+                if (!string.IsNullOrEmpty(empployeeCode))
+                {
+                    return Ok(empployeeCode);
+                }
+                else
+                {
+                    return StatusCode(404, "An unexpected error occurred. Please try again later.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An unexpected error occurred. Please try again later.");
+            }
         }
     }
 }

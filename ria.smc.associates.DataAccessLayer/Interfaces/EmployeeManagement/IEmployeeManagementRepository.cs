@@ -15,5 +15,6 @@ namespace ria.smc.associates.DataAccessLayer.Interfaces.EmployeeManagement
         Task<int> UpdateEmployeeInformation(EmployeeInformationDTO employeeInformationDTO);
         Task<int> DeleteEmployeeInformation(string employeeId);
         Task<List<EmployeeInformation>> GetEmployeeInformation(string? employeeCode, string? cnic, string? mobileNumber, string? department);
+        string GetMaxEmployeeCode();
     }
 }

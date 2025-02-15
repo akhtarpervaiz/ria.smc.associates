@@ -11,20 +11,31 @@ namespace ria.smc.associates.DL.UIDataLayers.MasterDate
 {
     public static class MasterDL
     {
-        public static Genders GetGenders()
+        public static List<Genders> GetGenders()
         {
-            string endPoint = $"Dashboard/GetDashboardMenuItems";
-            return HttpCaller.Get<Genders>(endPoint);
+            string endPoint = $"MasterData/GetGenders";
+            return HttpCaller.Get<List<Genders>>(endPoint);
         }
-        public static BloodGroups GetBloodGroups()
+        public static List<BloodGroups> GetBloodGroups()
         {
-            string endPoint = $"Dashboard/GetDashboardMenuItems";
-            return HttpCaller.Get<BloodGroups>(endPoint);
+            string endPoint = $"MasterData/GetBloodGroups";
+            return HttpCaller.Get<List<BloodGroups>>(endPoint);
         }
-        public static MaritalStatuses GetMaritalStatus()
+        public static List<MaritalStatuses> GetMaritalStatus()
         {
-            string endPoint = $"Dashboard/GetDashboardMenuItems";
-            return HttpCaller.Get<MaritalStatuses>(endPoint);
+            string endPoint = $"MasterData/GetMaritalStatuses";
+            return HttpCaller.Get<List<MaritalStatuses>>(endPoint);
         }
+        public static List<EmployeeTypes> GetEmployeeTypes()
+        {
+            string endPoint = $"MasterData/GetEmployeeTypes";
+            return HttpCaller.Get<List<EmployeeTypes>>(endPoint);
+        }
+        public static List<EmployeeStatuses> GetEmployeeStatus()
+        {
+            string endPoint = $"MasterData/GetEmployeeStatus";
+            return HttpCaller.Get<List<EmployeeStatuses>>(endPoint);
+        }
+        
     }
 }
