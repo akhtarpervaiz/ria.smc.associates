@@ -25,9 +25,9 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.EmployeeManagement
         {
             _genericRepository = genericRepository;
         }
-        public async Task<int> InsertEmployeeInformation(EmployeeInformationDTO employeeInformationDTO)
+        public async Task<string> InsertEmployeeInformation(EmployeeInformationDTO employeeInformationDTO)
         {
-            int result = 0;
+            string employeeCode = string.Empty;
             SqlCommand command = null;
 
             try
@@ -150,7 +150,15 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.EmployeeManagement
 
                 });
                 _genericRepository.OpenConnection();
-                result = command.ExecuteNonQuery();
+                //result = command.ExecuteNonQuery();
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        employeeCode = reader.GetString("EMPLOYEECODE");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -160,7 +168,7 @@ namespace ria.smc.associates.DataAccessLayer.Repositories.EmployeeManagement
             {
                 _genericRepository.CloseConnection();
             }
-            return result;
+            return employeeCode;
         }
         public async Task<List<EmployeeInformation>> GetEmployeeInformation(string? employeeCode, string? cnic, string? mobileNumber, string? department)
         {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ria.smc.associates.Common.Constants;
 using ria.smc.associates.DL.UIDataLayers.HumanResourceManagement;
 using ria.smc.associates.DL.UIDataLayers.MasterDate;
 using ria.smc.associates.Models.EmployeeManagement;
@@ -24,11 +25,13 @@ namespace ria.smc.associates.UI.Areas.HR.Controllers
         [HttpPost]
         public IActionResult EmployeeRegistration(EmployeeInformationDTO employeeInformationDTO)
         {
+            string employeeCode = string.Empty;
             if(employeeInformationDTO != null)
             {
                 if (ModelState.IsValid)
                 {
-
+                    employeeInformationDTO.RecordMode = RecordMode.Added;
+                    employeeCode = HumanResourceDL.CreateEmployee(employeeInformationDTO);
                 }
             }
             return View();

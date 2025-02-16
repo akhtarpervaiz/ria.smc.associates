@@ -60,10 +60,10 @@ namespace ria.smc.associates.WebAPI.Controllers
                         if (employeeInformationDTO.RecordMode == RecordMode.Added)
                         {
 
-                            var result = await _employeeManagementRepository.InsertEmployeeInformation(employeeInformationDTO);
-                            if (result < 0)
+                            string employeeCode = await _employeeManagementRepository.InsertEmployeeInformation(employeeInformationDTO);
+                            if (string.IsNullOrEmpty(employeeCode))
                                 return StatusCode(StatusCodes.Status500InternalServerError, ApplicationMessages.UnableToPersist);
-                            return new OkObjectResult(result);
+                            return new OkObjectResult(employeeCode);
 
                         }
                         else if (employeeInformationDTO.RecordMode == RecordMode.Updated)

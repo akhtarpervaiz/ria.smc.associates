@@ -49,15 +49,8 @@
                         <ul class="nav sub-menu" style="display: none;">
                             @foreach (var child in Model.Where(m => m.ParentId == parent.MenuItemId))
                             {
-                                
-                                   @* var urlParts = child.Url.Split('/');
-                                    var area = urlParts.Length > 0 ? urlParts[0] : "";
-                                    var controller = urlParts.Length > 1 ? urlParts[1] : "";
-                                    var action = urlParts.Length > 2 ? urlParts[2] : "";*@
-                                
-                                
                                 <li class="nav-item">
-                                    <a @*asp-action="@action" asp-controller="@controller" asp-area="@area"*@ href="/@child.Url" onclick="toggleParentMenu(@parent.MenuItemId)">
+                                    <a href="/@child.Url" onclick="toggleParentMenu(@parent.MenuItemId)">
                                         <i class="link-icon" data-feather="@child.Icon" style="width: 16px; height: 16px;"></i>
                                         <span style="margin-left:3px;">@child.Title</span>
                                     </a>

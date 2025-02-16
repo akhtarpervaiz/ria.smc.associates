@@ -12,16 +12,21 @@ namespace ria.smc.associates.DL.UIDataLayers.HumanResourceManagement
 {
     public class HumanResourceDL
     {
-        public static EmployeeInformation CreateEmployee(EmployeeInformationDTO employeeInformationDTO)
+        public static string CreateEmployee(EmployeeInformationDTO employeeInformationDTO)
         {
             string endPoint = $"EmployeeManagement/EmployeeRegistration";
-            return HttpCaller.Post<EmployeeInformation>(endPoint, employeeInformationDTO);
+            return HttpCaller.Post<string>(endPoint, employeeInformationDTO);
         }
 
         public static string GetMaxEmployeeCode()
         {
             string endPoint = $"EmployeeManagement/GetMaxEmployeeCode";
             return HttpCaller.Get<string>(endPoint);
+        }
+        public static List<EmployeeInformation> GetEmployeeInformation(string? employeeCode, string? mobileNo, string? cnic,  string? department)
+        {
+            string endPoint = $"EmployeeManagement/GetEmployeeInformation?employeeCode={employeeCode}&mobileNo={mobileNo}&cnic={cnic}&department={department}";
+            return HttpCaller.Get<List<EmployeeInformation>>(endPoint);
         }
     }
 }

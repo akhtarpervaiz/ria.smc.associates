@@ -13,7 +13,6 @@
     <Folder Include="Areas\HR\Models\" />
     <Folder Include="Areas\ProjectSetup\Data\" />
     <Folder Include="Areas\ProjectSetup\Models\" />
-    <Folder Include="Areas\ProjectSetup\Views\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
