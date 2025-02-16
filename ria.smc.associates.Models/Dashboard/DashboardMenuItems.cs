@@ -11,6 +11,7 @@ namespace ria.smc.associates.UI.Models
         public string Icon { get; set; }
         public int SortOrder { get; set; }
         public bool IsActive { get; set; } = true;
+        public string IsActiveItem { get; set; } = "";
         public string CreatedBy { get; set; }
         public decimal CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

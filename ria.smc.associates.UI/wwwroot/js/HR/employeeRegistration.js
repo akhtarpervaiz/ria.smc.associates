@@ -1,7 +1,7 @@
 ﻿$(function () {
     'use strict';
 
-    $('#PROFILEPICTURE').dropify();
+    //$('#PROFILEPICTURE').dropify();
 
     $("#employeeRegistrationForm").steps({
         headerTag: 'h2',
@@ -12,7 +12,7 @@
             return $("#employeeRegistrationForm").valid();
         },
         onFinishing: function (event, currentIndex) {
-            $("#employeeRegistrationForm").validate().settings.ignore = ":disabled";
+            $("#employeeRegistrationForm").validate().settings.ignore = ":disabled,:hidden";
             return $("#employeeRegistrationForm").valid();
         },
         onFinished: function (event, currentIndex) {
@@ -44,8 +44,11 @@
     $("#CNIC, #MOBILENO, #EMERGENCYCONTACTNUMBER").inputmask();
 
     $.validator.setDefaults({
-        submitHandler: function () {
-            $("#employeeRegistrationForm").submit();
+        submitHandler: function (form) {
+            if ($(form).valid())
+                form.submit();
+            return false;
+            //$("#employeeRegistrationForm").submit();
         }
     });
 

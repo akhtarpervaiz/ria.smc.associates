@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ria.smc.associates.Models.EmployeeManagement.EmployeeInformation>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Employee List";
+}
+
+<link href="@Url.Content("~/css/HR/employeeList.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/vendors/datatables.net-bs4/dataTables.bootstrap4.css")" rel="stylesheet" type="text/css" />
+
+<div class="page-content">
+    <nav class="page-breadcrumb d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="EmployeeList" asp-controller="EmployeeManagement" asp-area="HR">Employee</a></li>
+            <li class="breadcrumb-item active" aria-current="page">List</li>
+        </ol>
+
+        <a asp-action="EmployeeRegistration" asp-controller="EmployeeManagement" asp-area="HR" class="btn btn-primary mb-1 mb-md-0">
+            <i class="plus-icon" data-feather="box"></i>
+            Add Employee
+        </a>
+    </nav>
+
+    <div class="alert alert-danger alert-dismissible fade show d-none" id="errorAlertMessge" role="alert">
+        <strong>Error!</strong>
+        <p></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Employee List</h4>
+
+                    <div class="table-responsive">
+                        <table id="eployeeListTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Employee Code</th>
+                                    <th>Full Name</th>
+                                    <th>Father Name</th>
+                                    <th>CNIC</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var emp in Model)
+                                {
+                                    <tr>
+                                        <td>@emp.EmployeeCode</td>
+                                        <td>@emp.EmployeeName</td>
+                                        <td>@emp.FatherName</td>
+                                        <td>@emp.Cnic</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/vendors/datatables.net/jquery.dataTables.js")"></script>
+<script src="@Url.Content("~/vendors/datatables.net-bs4/dataTables.bootstrap4.js")"></script>
+
+<script>
+    $(function () {
+        'use strict';
+
+        $(function() {
+                $('#employeeListTable').DataTable({
+                  "aLengthMenu": [
+                    [10, 30, 50, -1],
+                    [10, 30, 50, "All"]
+                  ],
+                  "iDisplayLength": 10,
+                  "language": {
+                    search: ""
+                  }
+                });
+                $('#employeeListTable').each(function() {
+                  var datatable = $(this);
+                  // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+                  var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+                  search_input.attr('placeholder', 'Search');
+                  search_input.removeClass('form-control-sm');
+                  // LENGTH - Inline-Form control
+                  var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+                  length_sel.removeClass('form-control-sm');
+                });
+          });
+
+    });
+</script>

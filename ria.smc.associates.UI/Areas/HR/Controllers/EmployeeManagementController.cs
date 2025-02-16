@@ -11,6 +11,13 @@ namespace ria.smc.associates.UI.Areas.HR.Controllers
     public class EmployeeManagementController : Controller
     {
         [HttpGet]
+        public IActionResult EmployeeList()
+        {
+            List<EmployeeInformation> employees = HumanResourceDL.GetEmployeeInformation("", "", "", "");
+            return View(employees);
+        }
+
+        [HttpGet]
         public IActionResult EmployeeRegistration()
         {
             ViewBag.GetGenders = MasterDL.GetGenders();
@@ -23,10 +30,10 @@ namespace ria.smc.associates.UI.Areas.HR.Controllers
         }
 
         [HttpPost]
-        public IActionResult EmployeeRegistration(EmployeeInformationDTO employeeInformationDTO)
+        public IActionResult EmployeeRegistration([FromForm] EmployeeInformationDTO employeeInformationDTO)
         {
             string employeeCode = string.Empty;
-            if(employeeInformationDTO != null)
+            if (employeeInformationDTO != null)
             {
                 if (ModelState.IsValid)
                 {

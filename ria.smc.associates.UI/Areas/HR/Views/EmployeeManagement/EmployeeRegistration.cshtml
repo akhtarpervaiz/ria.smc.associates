@@ -12,7 +12,7 @@
 <div class="page-content">
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Employee</a></li>
+            <li class="breadcrumb-item"><a asp-action="EmployeeList" asp-controller="EmployeeManagement" asp-area="HR">Employee</a></li>
             <li class="breadcrumb-item active" aria-current="page">Registration</li>
         </ol>
     </nav>
@@ -30,29 +30,32 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Employee Registration</h4>
-                    <form id="employeeRegistrationForm" asp-area="HR" asp-controller="EmployeeManagement" asp-action="EmployeeRegistration" method="post" role="form" enctype="multipart/form-data">
+                    <form id="employeeRegistrationForm" asp-action="EmployeeRegistration" method="post" role="form" enctype="multipart/form-data">
+                        <input asp-for=EmployeeCode name="EmployeeCode" value="@ViewBag.MaxEmployeeCode" class="form-control d-none">
+                        <input asp-for=EmployeeCategoryId name="EmployeeCategoryId" value="NULL" class="form-control d-none">
+                        <input asp-for=Createdby name="Createdby" value="Admin" class="form-control d-none">
                         <h2>Personal Information</h2>
                         <section data-step="0">
                             <fieldset class="row">
-                                <div class="form-group col-md-4 col-sm-12">
+                                <div class="form-group col-md-3 col-sm-12">
                                     <label for="EMPLOYEENAME">Employee Code</label>
-                                    <input asp-for=EmployeeCode name="EmployeeCode" value="@ViewBag.MaxEmployeeCode" id="EmployeeCode" class="form-control" maxlength="50" type="text" placeholder="Employee Code" disabled>
+                                    <input name="EmployeeCodeReadonly" value="@ViewBag.MaxEmployeeCode" id="EmployeeCode" class="form-control" maxlength="50" type="text" placeholder="Employee Code" disabled>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="EMPLOYEENAME">Employee Name</label>
                                     <input asp-for=EmployeeName name="EmployeeName" id="EMPLOYEENAME" class="form-control" maxlength="50" type="text" placeholder="Employee Name" required>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-12">
-                                    <label for="FATHERNAME">Father Name</label>
-                                    <input asp-for=FatherName name="FatherName" id="FATHERNAME" class="form-control" maxlength="50" type="text" placeholder="Father Name" required>
+                                <div class="form-group col-md-5 col-sm-12">
+                                    <label for="PROFILE">Profile Picture</label>
+                                    <input name="PROFILE" id="PROFILE" class="form-control" type="file" placeholder="Profile Picture">
                                 </div>
                             </fieldset>
                             <fieldset class="row">
-                                <div class="form-group col-md-4 col-sm-12">
+                                <div class="form-group col-md-3 col-sm-12">
                                     <label for="CNIC">CNIC</label>
                                     <input asp-for=Cnic name="Cnic" id="CNIC" class="form-control" maxlength="15" type="text" placeholder="CNIC" data-inputmask-alias="99999-9999999-9" required>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-12">
+                                <div class="form-group col-md-3 col-sm-12">
                                     <label for="DATEOFBIRTH">Date of Birth</label>
                                     <div class="input-group date datepicker" id="datePicker_DATEOFBIRTH">
                                         <input asp-for=DateOfBirth name="DateOfBirth" id="DATEOFBIRTH" class="form-control" type="text" placeholder="Date of Birth" required>
@@ -60,8 +63,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-12">
+                                    <label for="FATHERNAME">Father Name</label>
+                                    <input asp-for=FatherName name="FatherName" id="FATHERNAME" class="form-control" maxlength="50" type="text" placeholder="Father Name" required>
+                                </div>
+                                <div class="form-group col-md-2 col-sm-12">
                                     <label for="GENDER">Gender</label>
-                                    <select asp-for=GenderId name="GENDER" id="GENDER" asp-items="@(new SelectList(ViewBag.GetGenders,"GenderId","Gender"))" class="form-control" required>
+                                    <select asp-for=GenderId name="GenderId" id="GENDER" asp-items="@(new SelectList(ViewBag.GetGenders,"GenderId","Gender"))" class="form-control" required>
                                         <option value="" selected>Select Gender</option>
                                     </select>
                                 </div>
@@ -71,13 +78,13 @@
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="MARITALSTATUS">Marital Status</label>
                                     <select asp-for=MaritalStatusId asp-items="@(new SelectList(ViewBag.GetMaritalStatus, "MaritalStatusId", "MaritalStatus"))" id="MARITALSTATUS" name="MaritalStatusId" class="form-control" required>
-                                        <option selected >Select Marital Status</option>
+                                        <option value="" selected >Select Marital Status</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-12">
                                     <label for="BLOODGROUP">Blood Group</label>
                                     <select asp-for=BloodGroupId id="BLOODGROUP" name="BloodGroupId" asp-items="@(new SelectList(ViewBag.GetBloodGroups,"BloodGroupId","BloodGroup"))" class="form-control" required>
-                                        <option selected >Select Blood Group</option>
+                                        <option value="" selected >Select Blood Group</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-12">
@@ -87,7 +94,7 @@
                             </fieldset>
                            @* <fieldset class="row">
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label for="NATIONALITY">Profile Picture</label>
+                                    <label for="PROFILEPICTURE">Profile Picture</label>
                                     <input type="file" name="PROFILEPICTURE" class="border" id="PROFILEPICTURE" accept="image/*" />
                                 </div>
                             </fieldset>*@
@@ -147,7 +154,7 @@
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="EMPLOYEETYPE">Employee Type</label>
                                     <select asp-for=EmployeeTypeId asp-items="@(new SelectList(ViewBag.GetEmployeeTypes, "EmployeeTypeId","EmployeeType"))" class="form-control" id="EMPLOYEETYPE" name="EmployeeTypeId" required>
-                                        <option selected>Select Employee Type</option>
+                                        <option value="" selected>Select Employee Type</option>
                                     </select>
                                 </div>
                             </fieldset>
@@ -164,8 +171,8 @@
                             <fieldset class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="EMPLOYEESTATUS">Employee Status</label>
-                                    <select asp-for="EmployeeStatusId" asp-items="@(new SelectList(ViewBag.GetEmployeeStatus,"EmployeeStatusId","EmployeeStatus"))" class="form-control" id="EMPLOYEESTATUS" name="EMPLOYEESTATUS" required>
-                                        <option  selected>Select Employee Status</option>
+                                    <select asp-for="EmployeeStatusId" asp-items="@(new SelectList(ViewBag.GetEmployeeStatus,"EmployeeStatusId","EmployeeStatus"))" class="form-control" id="EMPLOYEESTATUS" name="EmployeeStatusId" required>
+                                        <option value="" selected>Select Employee Status</option>
                                     </select>
                                 </div>
                             </fieldset>

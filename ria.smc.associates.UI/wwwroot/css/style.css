@@ -12831,8 +12831,7 @@ address p {
     transition: margin .1s ease, width .1s ease; }
     .main-wrapper .page-wrapper .page-content {
       flex-grow: 1;
-      padding: 25px;
-      margin-top: 60px; }
+      padding: 25px;}
       @media (max-width: 767px) {
         .main-wrapper .page-wrapper .page-content {
           padding: 25px 15px; } }
@@ -13476,8 +13475,7 @@ address p {
             position: absolute;
             left: -25px; }
           .sidebar .sidebar-body .nav .nav-item.active .nav-link .link-icon {
-            fill: rgba(239, 243, 255, 0.5);
-            color: #727cf5; }
+            fill: rgba(239, 243, 255, 0.5);}
       .sidebar .sidebar-body .nav.sub-menu {
         padding: 0 0 15px 33px; }
         .sidebar .sidebar-body .nav.sub-menu .nav-item {
@@ -15789,8 +15787,7 @@ select {
     padding: 0 .75rem;
     border: 1px solid #e8ebf1;
     border-radius: 0px;
-    outline: none;
-    color: #c9c8c8; }
+    outline: none; }
     select.form-control.border-primary, select.border-primary, .email-compose-fields .select2-container--default select.border-primary.select2-selection--multiple, .select2-container--default select.border-primary.select2-selection--single, .select2-container--default .select2-selection--single select.border-primary.select2-search__field {
       outline: 1px solid #727cf5; }
       select.form-control.border-primary:focus, select.border-primary:focus, .email-compose-fields .select2-container--default select.border-primary.select2-selection--multiple:focus, .select2-container--default .select2-selection--single select.border-primary.select2-search__field:focus {

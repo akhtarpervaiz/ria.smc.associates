@@ -13,7 +13,7 @@ namespace ria.smc.associatesDto.EmployeeManagement
     {
         public EmployeeInformationDTO()
         {
-            EmployeeRegId =  Guid.NewGuid().NewGuidId();
+            EmployeeId =  Guid.NewGuid().NewGuidId();
             EmployeeRegId =  Guid.NewGuid().NewGuidId();
             RecordMode = RecordMode.Added;
         }

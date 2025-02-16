@@ -10,6 +10,13 @@
             font-size: 14px;
             color: #666;
         }
+        .nav .nav-item{
+            display: contents;
+        }
+        .nav .nav-link span {
+            margin-left:20px !important;
+            margin-top: 3px !important;
+        }
 </style>
 @model IEnumerable<ria.smc.associates.UI.Models.DashboardMenuItems>
 
@@ -28,35 +35,37 @@
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
             <li class="nav-item">
-                <a href="dashboard-one.html" class="nav-link">
+                <a href="~/Home/Index" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
 
             <li class="nav-item nav-category">Pages</li>
-            
+
             @foreach (var parent in Model.Where(m => m.ParentId == string.Empty))
             {
-                <li class="nav-item" data-parent-id="@parent.MenuItemId">
-                    <a href="javascript:void(0);" class="nav-link parent-menu-item">
+                <li class="nav-item" data-parent-id="@parent.MenuItemId" id="@parent.MenuItemId">
+                    <a class="nav-link" data-toggle="collapse" href="#@parent.MenuItemId" role="button" aria-expanded="false" aria-controls="@parent.MenuItemId">
                         <i class="link-icon" data-feather="@parent.Icon"></i>
                         <span class="link-title">@parent.Title</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
-
                     @if (Model.Any(m => m.ParentId == parent.MenuItemId))
                     {
-                        <ul class="nav sub-menu" style="display: none;">
-                            @foreach (var child in Model.Where(m => m.ParentId == parent.MenuItemId))
-                            {
-                                <li class="nav-item">
-                                    <a href="/@child.Url" onclick="toggleParentMenu(@parent.MenuItemId)">
-                                        <i class="link-icon" data-feather="@child.Icon" style="width: 16px; height: 16px;"></i>
-                                        <span style="margin-left:3px;">@child.Title</span>
-                                    </a>
-                                </li>
-                            }
-                        </ul>
+                        <div class="items collapse" id="@parent.MenuItemId">
+                            <ul class="nav sub-menu">
+                                @foreach (var child in Model.Where(m => m.ParentId == parent.MenuItemId))
+                                {
+                                    <li class="nav-item">
+                                        <a href="@child.Url" class="nav-link @child.IsActiveItem" parent-id="@parent.MenuItemId">
+                                            <i class="link-icon" data-feather="@child.Icon" style="width: 16px; height: 16px;"></i>
+                                            <span style="margin-left:3px;">@child.Title</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     }
                 </li>
             }
@@ -67,21 +76,23 @@
 <script src="~/lib/jquery/jquery.min.js"></script>
 @*<a href="~/lib/jquery/jquery.min.map">~/lib/jquery/jquery.min.map</a>*@
 <script>
-    $(document).ready(function() 
-    {
-        $(".parent-menu-item").on("click", function() {
-            var subMenu = $(this).next(".sub-menu");
-            subMenu.toggle();
+        $(document).ready(function()
+        {
+            if ($('.nav-item .active')[0]) {
+                var parentId = $('.nav-item .active').attr("parent-id");
+                $("#" + parentId).addClass("active show");
+                $("#" + parentId + " .nav-link").removeClass("collapsed").attr("aria-expanded", "true");
+                $("#" + parentId + " .items").addClass("show");
+            }
         });
-    });
 
-    function toggleParentMenu(parentId) {
-    var parentMenu = document.querySelector(`[data-parent-id="${parentId}"]`);
+        function toggleParentMenu(parentId) {
+        var parentMenu = document.querySelector(`[data-parent-id="${parentId}"]`);
 
-    if (parentMenu) {
-        parentMenu.classList.add('active');  // Add active class to keep the parent open
-        parentMenu.querySelector('.sub-menu').style.display = 'block';  // Ensure child menu is visible
+        if (parentMenu) {
+            parentMenu.classList.add('active');  // Add active class to keep the parent open
+            parentMenu.querySelector('.sub-menu').style.display = 'block';  // Ensure child menu is visible
+        }
     }
-}
 </script>
 
