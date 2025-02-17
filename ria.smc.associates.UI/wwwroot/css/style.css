@@ -265,18 +265,20 @@ textarea {
   resize: vertical; }
 
 fieldset {
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: 0; }
+    min-width: 0;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
 
 legend {
   display: block;
-  width: 100%;
+  /*width: 100%;*/
   max-width: 100%;
-  padding: 0;
-  margin-bottom: .5rem;
-  font-size: 1.5rem;
+  padding: 5px;
+  margin-bottom: -6px;
+  font-size: 20px;
   line-height: inherit;
   color: inherit;
   white-space: normal; }
@@ -12831,8 +12833,8 @@ address p {
     transition: margin .1s ease, width .1s ease; }
     .main-wrapper .page-wrapper .page-content {
       flex-grow: 1;
-      padding: 25px;
-      margin-top: 60px; }
+      padding: 15px;
+      margin-top: 5px; }
       @media (max-width: 767px) {
         .main-wrapper .page-wrapper .page-content {
           padding: 25px 15px; } }
@@ -15171,8 +15173,8 @@ address p {
   -webkit-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
   -moz-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
   -ms-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2); }
-  .card .card-body {
-    padding: 1.5rem 1.5rem; }
+    .card .card-body {
+        padding: .3rem 0.5rem; }
     .card .card-body + .card-body {
       padding-top: 1rem; }
   .card .card-title {

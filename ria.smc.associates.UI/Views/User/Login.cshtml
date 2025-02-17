@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="shortcut icon" href="~/images/favicon.png" />
 </head>
+
 <body>
     <div class="main-wrapper">
         <div class="page-wrapper full-page">
@@ -39,7 +40,7 @@
                                             </button>
                                         </div>
                                         <form asp-controller="User" asp-action="Login" class="forms-sample cmxform" id="signInForm" method="post" role="form" enctype="multipart/form-data">
-                                            <fieldset>
+                                            <fieldset style="border:0px !important">
                                                 <div class="form-group">
                                                     <label for="cnic">CNIC</label>
                                                     <input name="UserName" id="cnic" class="form-control" maxlength="15" type="text" placeholder="CNIC" data-inputmask-alias="99999-9999999-9">

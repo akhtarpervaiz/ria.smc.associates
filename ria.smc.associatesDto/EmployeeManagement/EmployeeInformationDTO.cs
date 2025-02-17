@@ -14,7 +14,6 @@ namespace ria.smc.associatesDto.EmployeeManagement
         public EmployeeInformationDTO()
         {
             EmployeeRegId =  Guid.NewGuid().NewGuidId();
-            EmployeeRegId =  Guid.NewGuid().NewGuidId();
             RecordMode = RecordMode.Added;
         }
         public string EmployeeRegId { get; set; } 

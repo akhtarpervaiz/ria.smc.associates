@@ -1,44 +1,48 @@
 ﻿$(function () {
     'use strict';
 
-/*    $('#PROFILEPICTURE').dropify();*/
 
-    $("#employeeRegistrationForm").steps({
-        headerTag: 'h2',
-        bodyTag: 'section',
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex) {
-            $("#employeeRegistrationForm").validate().settings.ignore = ":disabled,:hidden";
-            return $("#employeeRegistrationForm").valid();
-        },
-        onFinishing: function (event, currentIndex) {
-            $("#employeeRegistrationForm").validate().settings.ignore = ":disabled";
-            return $("#employeeRegistrationForm").valid();
-        },
-        onFinished: function (event, currentIndex) {
-            $("#employeeRegistrationForm").submit();
-        }
-    });
-
-    if ($('#datePicker_DATEOFBIRTH').length) {
+    if ($('#datePicker_ProjectStartDate').length) {
         var date = new Date();
         var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        $('#datePicker_DATEOFBIRTH').datepicker({
+        $('#datePicker_ProjectStartDate').datepicker({
             format: "mm/dd/yyyy",
             todayHighlight: true,
             autoclose: true
         });
-        $('#datePicker_DATEOFBIRTH').datepicker();
+        $('#datePicker_ProjectStartDate').datepicker();
     }
-    if ($('#datePicker_DATEOFJOINING').length) {
+    if ($('#datePicker_ProjectStartDate').length) {
         var date = new Date();
         var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        $('#datePicker_DATEOFJOINING').datepicker({
+        $('#datePicker_ProjectStartDate').datepicker({
             format: "mm/dd/yyyy",
             todayHighlight: true,
             autoclose: true
         });
-        $('#datePicker_DATEOFJOINING').datepicker();
+        $('#datePicker_ProjectStartDate').datepicker();
+    }
+
+
+    if ($('#datePicker_EstimatedCompletionDate').length) {
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        $('#datePicker_EstimatedCompletionDate').datepicker({
+            format: "mm/dd/yyyy",
+            todayHighlight: true,
+            autoclose: true
+        });
+        $('#datePicker_EstimatedCompletionDate').datepicker();
+    }
+    if ($('#datePicker_EstimatedCompletionDate').length) {
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        $('#datePicker_EstimatedCompletionDate').datepicker({
+            format: "mm/dd/yyyy",
+            todayHighlight: true,
+            autoclose: true
+        });
+        $('#datePicker_EstimatedCompletionDate').datepicker();
     }
 
     $("#CNIC, #MOBILENO, #EMERGENCYCONTACTNUMBER").inputmask();

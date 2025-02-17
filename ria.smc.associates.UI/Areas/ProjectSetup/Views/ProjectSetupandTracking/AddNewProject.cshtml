@@ -1,8 +1,197 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model ria.smc.associatesDto.ProjectSetupandTracking.ProjectSetupDTO
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Create New Project";
 }
+
 <div class="page-content">
-    
+    <nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Project Setup & Tracking</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Project Setup</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <h4 class="card-title" style="margin-left:10px">Create New Project</h4>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form id="employeeRegistrationForm" asp-area="HR" asp-controller="EmployeeManagement" asp-action="EmployeeRegistration" method="post" role="form" enctype="multipart/form-data">
+                        <fieldset>
+                            <legend>Project Information</legend>
+                            <div class="row">
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectCode">Project Code</label>
+                                    <input asp-for="ProjectCode" name="ProjectCode" id="ProjectCode" class="form-control" maxlength="50" type="text" placeholder="Project Code">
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectName">Project Name</label>
+                                    <input asp-for="ProjectName" name="ProjectName" id="ProjectName" class="form-control" maxlength="50" type="text" placeholder="Project Name" required>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ClientName">Client Name</label>
+                                    <input asp-for="ClientName" name="ClientName" id="ClientName" class="form-control" maxlength="50" type="text" placeholder="Client Name" required>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectTypeId">Project Type </label>
+                                    <select asp-for="ProjectTypeId" name="ProjectTypeId" id="ProjectTypeId" class="form-control" maxlength="50" type="text" placeholder="Project Type ">
+                                        <option value="" selected> Select Project Type</option>
+                                        <option value="">Residential</option>
+                                        <option value="">Commercial</option>
+                                        <option value="">Infrastructure</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectStartDate">Project Start Date</label>
+                                    <div class="input-group date datepicker" id="datePicker_ProjectStartDate">
+                                        <input asp-for="ProjectStartDate" name="ProjectStartDate" id="ProjectStartDate" class="form-control" type="text" placeholder="Project Start Date" required>
+                                        <span class="input-group-addon"><i data-feather="calendar"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="EstimatedCompletionDate">Estimated Completion Date</label>
+                                    <div class="input-group date datepicker" id="datePicker_EstimatedCompletionDate">
+                                        <input asp-for="EstimatedCompletionDate" name="EstimatedCompletionDate" id="EstimatedCompletionDate" class="form-control" type="text" placeholder="Estimated Completion Date" required>
+                                        <span class="input-group-addon"><i data-feather="calendar"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectStausId">Project Status</label>
+                                    <select asp-for="ProjectStausId" name="ProjectStausId" id="ProjectStausId" class="form-control" maxlength="50" type="text" placeholder="Project Status">
+                                        <option value="" selected> Select Project Status</option>
+                                        <option value="">In Progress</option>
+                                        <option value="">On Hold</option>
+                                        <option value="">Completed</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectLocation">Project Location</label>
+                                    <input asp-for="ProjectLocation" name="ProjectLocation" id="ProjectLocation" class="form-control" type="text" placeholder="Project Location">
+                                    
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="ProjectDescription">Project Description</label>
+                                    <input asp-for="ProjectDescription" name="ProjectDescription" id="ProjectDescription" class="form-control" type="text" placeholder="Project Description">
+
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Project Financial</legend>
+                            <div class="row">
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="EstimatedBudget">Estimated Budget</label>
+                                    <input asp-for="EstimatedBudget" name="EstimatedBudget" id="EstimatedBudget" class="form-control" min="0" type="number" placeholder="Estimated Budget">
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="AllocatedBudget">Allocated Budget</label>
+                                    <input asp-for="AllocatedBudget" name="AllocatedBudget" id="AllocatedBudget" class="form-control" min="0" type="number" placeholder="Allocated Budget">
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="FundingSourceId">Funding Source</label>
+                                    <select asp-for="FundingSourceId" name="FundingSourceId" id="FundingSourceId" class="form-control" type="text" placeholder="Funding Source" required>
+                                        <option selected value="">Select Funding Source</option>
+                                        <option value="">Company Funded</option>
+                                        <option value="">Client Funded</option>
+                                        <option value="">Bank Loan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="CurrencyId">Currency</label>
+                                    <select asp-for="CurrencyId" name="CurrencyId" id="CurrencyId" class="form-control" type="text" placeholder="Currency" required>
+                                        <option value="" selected>Select Currency</option>
+                                        <option value="">USD</option>
+                                        <option value="">PKR</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Project Team</legend>
+                            <div class="row">
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="ProjectManagerId">Project Manager</label>
+                                    <select asp-for="ProjectManagerId" name="ProjectManagerId" id="ProjectManagerId" class="form-control" type="number" placeholder="Project Manager">
+                                        <option value="" selected>Select Project Manager</option>
+                                        <option>Asif</option>
+                                        <option>Sardar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="SiteSupervisorId">Site Supervisor</label>
+                                    <select asp-for="SiteSupervisorId" name="SiteSupervisorId" id="SiteSupervisorId" class="form-control" type="number" placeholder="Site Supervisor">
+                                        <option value="" selected>Select Site Supervisor</option>
+                                        <option>Asif</option>
+                                        <option>Sardar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="MainContractorId">Main Contractor</label>
+                                    <select asp-for="MainContractorId" name="MainContractorId" id="MainContractorId" class="form-control" type="number" placeholder="Main Contractor">
+                                        <option value="" selected>Select Main Contractor</option>
+                                        <option>Asif</option>
+                                        <option>Sardar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="SubContractorId">Sub Contractor</label>
+                                    <select asp-for="SubContractorId" name="SubContractorId" id="SubContractorId" class="form-control" type="number" placeholder="Sub Contractor">
+                                        <option value="" selected>Select Sub Contractor</option>
+                                        <option>Asif</option>
+                                        <option>Sardar</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Other Information</legend>
+                            <div class="row">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="ApprovalStatusId">Apprival Status</label>
+                                    <select asp-for="ApprovalStatusId" name="ApprovalStatusId" id="ApprovalStatusId" class="form-control" type="number" placeholder="Apprival Status">
+                                        <option value="" selected>Select Apprival Status</option>
+                                        <option>Pending</option>
+                                        <option>Approved</option>
+                                        <option>Rejected</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="ProjectAttachment">Attachment</label>
+                                    <input asp-for="ProjectAttachment" name="ProjectAttachment" id="ProjectAttachment" class="form-control" type="file" required>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="Remarks">Remarks</label>
+                                    <input asp-for="Remarks" name="Remarks" id="Remarks" class="form-control" type="text" placeholder="Remarks">
+
+                                </div>
+                            </div>
+                            
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="@Url.Content("~/js/ProjectSetup/ProjectSetup.js")"></script>
+
+<script>
+    $(function () {
+        'use strict';
+        if ("@ViewData["ErrorAlertMessge"]" != null && "@ViewData["ErrorAlertMessge"]" != "") {
+            $("#errorAlertMessge").removeClass("d-none");
+            $("#errorAlertMessge p").html("@ViewData["ErrorAlertMessge"]");
+        }
+    })
+</script>
+
